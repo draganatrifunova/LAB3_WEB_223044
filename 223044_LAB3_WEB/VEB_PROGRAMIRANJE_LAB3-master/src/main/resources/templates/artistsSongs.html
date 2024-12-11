@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artists</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+            padding: 3px 2px;
+        }
+
+        section {
+            float: left;
+            margin: 0 1.5%;
+            width: 63%;
+        }
+
+        aside {
+            float: right;
+            margin: 0 1.5%;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+<div xmlns:th="http://www.thymeleaf.org">
+    <header>
+        <h1>Selected artist's songs: </h1>
+    </header>
+    <section>
+        <h2>Select artist: <span th:text="${artist.getFirstName() + ' ' + artist.getLastName()}" ></span></h2>
+        <!-- Make changes to this code to dynamically display radio buttons for each artist as in the example -->
+        <form action="/artistsSongs" method="POST">
+            <div th:each="song: ${songs}">
+                <<label>Title: </label><span th:text="${song.getTitle()}"></span>
+                <label>, Genre: </label><span th:text="${song.getGenre()}"></span>
+                <label>, Release year: </label><span th:text="${song.getReleaseYear()}"></span>
+                <br/>
+            </div>
+            <br/>
+        </form>
+    </section>
+</div>
+</body>
+</html>

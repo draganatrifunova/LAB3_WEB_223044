@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Songs List</title>
+</head>
+<body>
+<header>
+    <h1>All Songs</h1>
+</header>
+<main>
+
+    <div th:if="${error != null}" th:text="${error}" style="color: red;"></div>
+
+    <div>
+        <a href="/songs/edit-form" style="margin-bottom: 20px; display: inline-block;">
+            <button>Create New Song</button>
+        </a>
+    </div>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Release Year</th>
+            <th>Album</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="song : ${songs}">
+            <td th:text="${song.getTitle()}"></td>
+            <td th:text="${song.getGenre()}"></td>
+            <td th:text="${song.getReleaseYear()}"></td>
+            <td th:text="${song.getAlbum().getName()}"></td>
+            <td>
+                <a th:href="@{'/songs/edit-form/' + ${song.getId()}}">
+                    <button>Edit</button>
+                </a>
+
+                <form th:action="@{'/songs/delete/' + ${song.getId()}}" th:method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

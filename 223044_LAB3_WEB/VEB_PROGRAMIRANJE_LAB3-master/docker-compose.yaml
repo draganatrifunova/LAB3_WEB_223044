@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: dace
+      POSTGRES_PASSWORD: dace123
+      POSTGRES_DB: music
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - postgres_network
+
+#  pgadmin:
+#    image: dpage/pgadmin4:latest
+#    container_name: pgadmin
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+#      PGADMIN_DEFAULT_PASSWORD: admin
+#    volumes:
+#      - pgadmin_data:/var/lib/pgadmin
+#    networks:
+#      - postgres_network
+#    ports:
+#      - "79:80"
+#    depends_on:
+#      - db
+
+volumes:
+  postgres_data:
+  #pgadmin_data:
+
+networks:
+  postgres_network:
+    driver: bridge

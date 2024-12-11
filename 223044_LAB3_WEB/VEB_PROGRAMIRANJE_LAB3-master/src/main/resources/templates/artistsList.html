@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Add new Performer to Song</title>
+    <style type = "text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+        table {
+            width:100%;
+        }
+        table, td, th {
+            border: 1px solid black;
+            padding:3px 2px;
+        }
+        section {
+            float: left;
+            margin: 0 1.5%;
+            width: 63%;
+        }
+        aside {
+            float: right;
+            margin: 0 1.5%;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Select the Artist to add to the List of Performers </h1>
+</header>
+<section>
+    <h2>Select artist:</h2>
+    <form th:action="@{/artist}" th:method="POST">
+        <div th:each="artist : ${artists}">
+            <input type="radio" th:name="'artistId'" th:value="${artist.id}" />
+            <span th:text="${artist.firstName} + ' ' + ${artist.lastName}"></span> <br/>
+        </div>
+
+        <input type="hidden" th:name="'songId'" th:value="${selected}" />
+
+        <input type='submit' value='Add artist'>
+    </form>
+</section>
+
+<aside>
+    <table>
+        <tr>
+            <td><b>Track Id</b></td>
+            <td th:text="${selected}"></td>
+        </tr>
+    </table>
+</aside>
+</body>
+</html>
