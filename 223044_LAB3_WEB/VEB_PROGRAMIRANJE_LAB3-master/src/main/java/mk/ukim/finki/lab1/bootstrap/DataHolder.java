@@ -24,28 +24,28 @@ public class DataHolder {
 
     @PostConstruct
     public void init() {
-        Album afterHours = new Album("After Hours", "R&B", "2020");
-        Album bornToDie = new Album("Born to Die", "Alternative", "2012");
-        Album fearless = new Album("Fearless", "Country pop", "2008");
-        Album useYourIllusionI = new Album("Use Your Illusion I", "Rock", "1991");
-        Album dooWopsHooligans = new Album("Doo-Wops & Hooligans", "R&B/Soul", "2010");
+        Album album1 = new Album("Album1", "Rock", "2020");
+        Album album2 = new Album("Album2", "Pop", "2012");
+        Album album3 = new Album("Album3", "Hip-hop", "2008");
+        Album album4 = new Album("Album4", "Rap", "1991");
+        Album album5 = new Album("Album5", "Pop", "2010");
 
-        albumRepository.save(afterHours);
-        albumRepository.save(bornToDie);
-        albumRepository.save(fearless);
-        albumRepository.save(useYourIllusionI);
-        albumRepository.save(dooWopsHooligans);
+        albumRepository.save(album1);
+        albumRepository.save(album2);
+        albumRepository.save(album3);
+        albumRepository.save(album4);
+        albumRepository.save(album5);
 
-        artistRepository.save(new Artist("The", "Weeknd", "text1"));
-        artistRepository.save(new Artist("Lana", "Del Ray", "text2"));
-        artistRepository.save(new Artist("Taylor", "Swift", "text3"));
-        artistRepository.save(new Artist("Guns N'", "Roses", "text4"));
-        artistRepository.save(new Artist("Bruno", "Mars", "text5"));
+        artistRepository.save(new Artist("Tose", "Proevski", "Makedonski peac"));
+        artistRepository.save(new Artist("Esma", "Redzepova", "Romska peacka"));
+        artistRepository.save(new Artist("Taylor", "Swift", "Amerikanska peacka"));
+        artistRepository.save(new Artist("Mustafa'", "Ceceli", "Turski peac"));
+        artistRepository.save(new Artist("Sasa", "Matic", "Srpski peac"));
 
-        songRepository.save(new Song("After Hours", "R&B", 2020, afterHours));
-        songRepository.save(new Song("Summertime Sadness", "Alternative", 2012, bornToDie));
-        songRepository.save(new Song("Love Story", "Country pop", 2008, fearless));
-        songRepository.save(new Song("November Rain", "Rock", 1991, useYourIllusionI));
-        songRepository.save(new Song("Grenade", "R&B/Soul", 2010, dooWopsHooligans));
+        songRepository.save(new Song("Song One", "Rock", 2005, album1));
+        songRepository.save(new Song("Song Two", "Pop", 2006, album2));
+        songRepository.save(new Song("Song Three", "Hip-hop", 2007, album3));
+        songRepository.save(new Song("Song Four", "Rap", 2008, album4));
+        songRepository.save(new Song("Song Five", "Pop", 2009, album5));
     }
 }
