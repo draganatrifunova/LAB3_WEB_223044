@@ -32,6 +32,13 @@ public class SongController {
         return "listSongs";
     }
 
+    @GetMapping("/{albumId}")
+    public String getSongsPerAlbum(@RequestParam(required = false) String error, @PathVariable Long albumId, Model model) {
+        model.addAttribute("songs", songService.findByAlbumId(albumId));
+        model.addAttribute("error", error);
+        return "listSongs";
+    }
+
     @PostMapping("/delete/{id}")
     public String deleteSong(@PathVariable Long id) {
         songService.deleteSong(id);
