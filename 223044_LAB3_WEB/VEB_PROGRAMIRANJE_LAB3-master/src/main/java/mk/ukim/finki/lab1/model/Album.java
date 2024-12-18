@@ -28,6 +28,4 @@ public class Album {
         this.genre = genre;
         this.releaseYear = releaseYear;
     }
-
-
 }

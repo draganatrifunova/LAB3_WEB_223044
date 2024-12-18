@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Album</title>
+</head>
+<body>
+<div xmlns:th="http://www.thymeleaf.org">
+    <form action="/albums/add" method="POST">
+        <input id="id" type="hidden" name="id"
+               th:value="(${album} != null ? ${album.getId()} : '')">
+        <div>
+            <label for="name">Album name</label>
+            <input type="text"
+                   id="name"
+                   name="name"
+                   th:value="(${album} != null ? ${album.name} : '')"
+                   required
+                   placeholder="Enter Album name">
+        </div>
+
+        <div>
+            <label for="genre">Genre</label>
+            <input type="text"
+                   id="genre"
+                   name="genre"
+                   th:value="(${album} != null ? ${album.getGenre()} : '')"
+                   placeholder="genre">
+        </div>
+        <div>
+            <label for="releaseYear">Release year</label>
+            <input type="number"
+                   id="releaseYear"
+                   name="releaseYear"
+                   th:value="(${album} != null ? ${album.getReleaseYear()} : '')"
+                   placeholder="release year">
+        </div>
+
+        <button id="submit" type="submit">Submit</button>
+        <a type="button" href="/albums">Back</a>
+    </form>
+
+</div>
+</body>
+</html>
