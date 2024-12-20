@@ -32,9 +32,6 @@ public class WebSecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .securityMatcher("/**")
-                .cors((cors) -> cors
-                        .configurationSource(corsConfigurationSource())
-                )
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/albums", "/songs").permitAll()
                         .anyRequest().hasRole("ADMIN"))
@@ -45,21 +42,6 @@ public class WebSecurityConfig {
         return httpSecurity.build();
     }
 
-    @Bean
-    public UrlBasedCorsConfigurationSource corsConfigurationSource() {
-
-        // return request -> new UrlBasedCorsConfigurationSource();
-
-        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOrigins(Arrays.asList("http://localhost:9090"));  // Allow requests from this domain
-//        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
-//        configuration.addAllowedHeader("*");  // Allow all headers
-//        configuration.setAllowCredentials(true);  // Allow credentials (cookies, etc.)
-//
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);  // Apply this to all URLs
-        return source;
-    }
 
 
 }
