@@ -11,11 +11,13 @@
 
     <div th:if="${error != null}" th:text="${error}" style="color: red;"></div>
 
-    <div>
-        <a href="/albums/edit-form" style="margin-bottom: 20px; display: inline-block;">
-            <button>Create New Album</button>
-        </a>
-    </div>
+    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+        <div>
+            <a href="/albums/edit-form" style="margin-bottom: 20px; display: inline-block;">
+                <button>Create New Album</button>
+            </a>
+        </div>
+    </th:block>
 
     <table border="1">
         <thead>
@@ -31,15 +33,18 @@
             <td th:text="${album.name}"></td>
             <td th:text="${album.genre}"></td>
             <td th:text="${album.releaseYear}"></td>
-            <td>
-                <a th:href="@{'/albums/edit-form/' + ${album.getId()}}">
-                    <button>Edit</button>
-                </a>
+            <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <td>
+                    <a th:href="@{'/albums/edit-form/' + ${album.getId()}}">
+                        <button>Edit</button>
+                    </a>
 
-                <form th:action="@{'/albums/delete/' + ${album.getId()}}" th:method="POST" style="display:inline;">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
+                    <form th:action="@{'/albums/delete/' + ${album.getId()}}" th:method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+
+                </td>
+            </th:block>
         </tr>
         </tbody>
     </table>
