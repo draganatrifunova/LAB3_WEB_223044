@@ -34,7 +34,7 @@ public class WebSecurityConfig {
                 .securityMatcher("/**")
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/albums", "/songs").permitAll()
-                        .anyRequest().hasRole("ADMIN"))
+                        .anyRequest().authenticated())
 
                 .formLogin(Customizer.withDefaults())
                 .logout(Customizer.withDefaults());
