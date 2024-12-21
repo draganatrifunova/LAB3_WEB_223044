@@ -8,20 +8,25 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+    private final PasswordEncoder passwordEncoder;
+
+    public WebSecurityConfig(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder()
+        UserDetails user = User.builder()
                 .username("admin")
-                .password("admin")
+                .password(passwordEncoder.encode("admin"))
                 .roles("ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(user);
@@ -41,7 +46,5 @@ public class WebSecurityConfig {
 
         return httpSecurity.build();
     }
-
-
 
 }
